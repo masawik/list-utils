@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    width: 960px;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.block:not(:last-child) {
+    margin-right: 30px;
+}
+
+.template {
+    margin-bottom: 10px;
+}
+
+.data {
+    height: 400px;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+.submit {
+    margin-left: auto;
+    padding: 10px;
+}
