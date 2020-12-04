@@ -21,10 +21,10 @@ function parseTemplate(string) {
   return stringList
 }
 
-export function stringParser(template, strings) {
+export function reformat(template, strings) {
+  strings = strings.filter(i => Boolean(i))
   const templateAsList = parseTemplate(template)
   const stringValues = []
-
   for (let stringItem of strings) {
     let prevVar
     const stringObj = {}
@@ -69,17 +69,3 @@ export function stringInserter(template, strings) {
 
   return stringList
 }
-
-// const strings = [
-//   '192.168.1.1:80:velloso3:Vfhjp2012',
-//   '192.168.1.2:83:vellos4o3:Vfhjp2012',
-//   '192.168.1.3:85:vel5oso3:Vfhjp5012'
-// ]
-//
-// const inputTemplate = '{ip}:{port}:{login}:{password}'
-// const parsedStrings = stringParser(inputTemplate, strings)
-//
-// const outputTemplate = ';;;{ip};;;;;;{login};;{port};{password};;;'
-//
-// console.log(stringInserter(outputTemplate, parsedStrings))
-
