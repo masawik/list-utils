@@ -1,8 +1,5 @@
-.container {
+.form {
     display: flex;
-    width: 960px;
-    margin: 0 auto;
-    padding-top: 100px;
 }
 
 .block {
@@ -19,13 +16,12 @@
     margin-bottom: 10px;
 }
 
-.data {
-    height: 400px;
-    resize: none;
-    margin-bottom: 10px;
+.textarea {
+    height: 60vh;
 }
 
 .submit {
     margin-left: auto;
+    margin-top: 10px;
     padding: 10px;
 }

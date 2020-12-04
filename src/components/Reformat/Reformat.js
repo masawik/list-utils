@@ -3,7 +3,10 @@ import styles from './Reformat.module.css'
 import {stringInserter, reformat} from "../../utils/Reformat";
 import {lsRead, lsWrite} from "../../utils/localStorage";
 import {listToString, stringToList} from "../../utils/list-string";
-
+import Textarea from "../inputs/Textarea";
+import InputText from "../inputs/InputText";
+import Header from "../Header/Header";
+const PAGE_TITLE = 'Форматирование строк'
 
 function Reformat() {
   // константы
@@ -22,7 +25,7 @@ function Reformat() {
 
   // синхронизация с лс при загрузке компонента
   useEffect(() => {
-    document.title = 'Форматирование строк'
+    document.title = PAGE_TITLE
     const oldTemplates = lsRead(LS_TEMPLATE_KEY)
     if (oldTemplates) {
       setInputTemplate(oldTemplates.input)
@@ -58,58 +61,61 @@ function Reformat() {
   }
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className={styles.container}
-    >
-      <div className={styles.block}>
-        <input
-          className={styles.template}
-          type="text"
-          placeholder="маска входных данных"
-          value={inputTemplate}
-          onChange={inputTemplateHandler}
-          name={'inputTemplate'}
-        />
+    <div className='container'>
+      <Header
+        title={PAGE_TITLE}
+      />
 
-        <textarea
-          className={styles.data}
-          placeholder="входные данные"
-          onChange={inputDataHandler}
-          value={dataToText()}
-          required
-        />
+      <form
+        onSubmit={onSubmit}
+        className={styles.form}
+      >
+        <div className={styles.block}>
+          <InputText
+            label="маска входных данных"
+            className={styles.template}
+            type="text"
+            value={inputTemplate}
+            onChange={inputTemplateHandler}
+            name={'inputTemplate'}
+          />
 
-        <button
-          className={styles.submit}
+          <Textarea
+            label='входные данные'
+            className={styles.textarea}
+            onChange={inputDataHandler}
+            value={dataToText()}
+            required
+          />
 
-        >форматировать
-        </button>
-      </div>
+          <button className={'button ' + styles.submit}>
+            форматировать
+          </button>
+        </div>
 
-      <div className={styles.block}>
-        <input
-          className={styles.template}
-          type="text"
-          placeholder="маска выходных данных"
-          value={outputTemplate}
-          onChange={e => {
-            setOutputTemplate(e.target.value)
-          }}
-          onFocus={() => {
-            setOutputTemplateTouched(true)
-          }}
-        />
+        <div className={styles.block}>
+          <InputText
+            label='маска выходных данных'
+            className={styles.template}
+            type="text"
+            value={outputTemplate}
+            onChange={e => {
+              setOutputTemplate(e.target.value)
+            }}
+            onFocus={() => {
+              setOutputTemplateTouched(true)
+            }}
+          />
 
-        <textarea
-          className={styles.data}
-          placeholder="маска выходные данные"
-          readOnly
-          value={outputData}
-        />
-      </div>
-    </form>
-
+          <Textarea
+            label='выходные данные'
+            className={styles.textarea}
+            readOnly
+            value={outputData}
+          />
+        </div>
+      </form>
+    </div>
   );
 }
 

@@ -1,0 +1,38 @@
+.label {
+    display: contents;
+}
+
+.textarea {
+    resize: none;
+    border: 1px solid var(--black);
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.textarea::-webkit-scrollbar {
+    background: transparent;
+    width: 5px;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+    background-color: var(--black);
+}
+
+.textarea::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+.textarea:focus {
+    outline: 1px solid var(--black);
+}
+
+.input {
+    border: 1px solid var(--black);
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.input:focus {
+    outline: 1px solid var(--black);
+}

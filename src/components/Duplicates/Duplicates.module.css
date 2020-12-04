@@ -1,31 +1,27 @@
-.container {
+.form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 960px;
-    margin: 0 auto;
-    padding-top: 100px;
-}
-
-.textarea {
-    resize: none;
-    width: 600px;
-    height: 400px;
+    width: 100%;
 }
 
 .textareaSpanBox {
     display: flex;
     flex-direction: column;
-    position: relative;
     padding-bottom: 25px;
+    width: 100%;
+    position: relative;
 }
+
+.textarea {
+    height: 60vh;
+}
+
 
 .stat {
     position: absolute;
-    left: 0px;
-    bottom: 0px;
+    left: 0;
+    bottom: 0;
+    color: #179400;
 }
 
-.submit {
-    padding: 10px;
-}

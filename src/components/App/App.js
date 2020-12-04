@@ -4,6 +4,7 @@ import {Redirect, Route, Switch} from "react-router-dom";
 import Reformat from "../Reformat/Reformat";
 import Duplicates from "../Duplicates/Duplicates";
 import TwoLists from "../TwoLists/TwoLists";
+import './App.global.css'
 
 export default function App() {
   return (
