@@ -3,6 +3,7 @@
 :root {
     --black: #000000;
     --white: #fff;
+    --gray: #ccc;
 }
 
 * {
@@ -43,4 +44,8 @@ body {
 .container {
     margin: 0 auto;
     width: 960px;
+}
+
+a {
+    text-decoration: none;
 }

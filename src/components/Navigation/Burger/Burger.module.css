@@ -8,25 +8,29 @@
     outline: none;
     transition-property: transform;
     transition-duration: .3s;
-    transition-delay: 40ms;
     z-index: 10;
 }
 
 .burger_active {
-    transform: translateX(220px);
+    transform: translateX(230px);
 }
 
 .burger__line {
     display: block;
     height: 5px;
     width: 30px;
-    background-color: #282828;
-    transition-property: transform, opacity;
+    background-color: var(--black);
+    transition-property: transform, opacity, color;
     transition-duration: .3s;
 }
 
 .burger__line:not(:last-child) {
     margin-bottom: 5px;
+}
+
+.burger__line_active {
+    background-color: var(--white);
+
 }
 
 .burger__line_active:nth-child(1) {

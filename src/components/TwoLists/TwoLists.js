@@ -18,10 +18,6 @@ export default function TwoLists() {
     document.title = PAGE_TITLE
   }, [])
 
-  useEffect(() => {
-    console.log(mode)
-  }, [mode])
-
   function onSubmit(e) {
     e.preventDefault()
     switch (mode) {

@@ -1,7 +1,8 @@
 .menu {
-    background-color: #f3f3f3;
+    background-color: var(--black);
     height: 100vh;
     width: 300px;
+    padding: 50px 15px;
     position: fixed;
     transition-property: transform;
     transition-duration: .3s;
@@ -17,14 +18,46 @@
     width: 100vw;
     height: 100vh;
     position: fixed;
-    background-color: black;
+    background-color: var(--black);
     opacity: 50%;
-    transition-property: transform;
-    transition-duration: .3s;
-    transform: translateX(100vw);
     z-index: 2;
 }
 
-.dimmer_active {
-    transform: translateX(0);
+.link {
+    color: var(--white);
+}
+
+.link_current {
+    color: var(--gray);
+}
+
+.li {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.li:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.li:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: var(--white);
+    transition-property: transform;
+    transition-duration: .5s;
+    transform: scaleX(0);
+}
+
+.li_current:after {
+    transform: scaleX(1);
+}
+
+.li:hover:after {
+    transform: scaleX(1);
 }

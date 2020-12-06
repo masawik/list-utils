@@ -1,15 +1,17 @@
 import React, {useState, Fragment} from 'react'
 import styles from './Menu.module.css'
 import Burger from "../Burger/Burger";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
-export default function Menu() {
+function Menu({location}) {
+  // инициализация стейтов
   const [isOpen, setIsOpen] = useState(false)
 
   function toggleMenu() {
     setIsOpen(prevState => !prevState)
   }
 
+  // создание дом элементов
   const routes = [
     {
       title: 'Форматирование строк',
@@ -24,23 +26,33 @@ export default function Menu() {
       path: '/twolists'
     },
   ]
-
-  const routesEl = routes.map((item, index) => {
+  const $routes = routes.map((item, index) => {
+    let liClasses = [styles.li]
+    if (location.pathname === item.path) liClasses.push(styles.li_current)
+    liClasses = liClasses.join(' ')
     return (
-      <li key={'navLis' + index}>
-        <Link key={'navLinks' + index} to={item.path}>{item.title}</Link>
+      <li
+        className={liClasses}
+        key={item.title}
+      >
+        <Link
+          className={styles.link}
+          to={item.path}
+        >{item.title}</Link>
       </li>
     )
   })
+  const $dimmer = isOpen
+    ? (<div
+      className={styles.dimmer}
+      onClick={toggleMenu}
+    > </div>)
+    : null
+
   // инициализация стилей
   let menuStyles = [styles.menu]
-  let dimmerStyles = [styles.dimmer]
-  if (isOpen) {
-    menuStyles.push(styles.menu_opened)
-    dimmerStyles.push(styles.dimmer_active)
-  }
+  if (isOpen) menuStyles.push(styles.menu_opened)
   menuStyles = menuStyles.join(' ')
-  dimmerStyles = dimmerStyles.join(' ')
 
   return (
     <Fragment>
@@ -52,15 +64,13 @@ export default function Menu() {
       <div className={menuStyles}>
         <nav>
           <ul>
-            {routesEl}
+            {$routes}
           </ul>
         </nav>
       </div>
-
-      <div
-        className={dimmerStyles}
-        onClick={toggleMenu}
-      > </div>
+      {$dimmer}
     </Fragment>
   )
 }
+
+export default withRouter(Menu)
