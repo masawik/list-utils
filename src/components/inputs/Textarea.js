@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './inputs.module.css'
 
-export default function Textarea({className, value, onChange, required, placeholder, label, readOnly}) {
+export default function Textarea({className, value, onChange, required, placeholder, label, readOnly, name}) {
   let textareaClasses = styles.textarea
   if (className) textareaClasses = textareaClasses + ' ' + className
 
@@ -16,6 +16,7 @@ export default function Textarea({className, value, onChange, required, placehol
         required={required}
         placeholder={placeholder}
         readOnly={readOnly}
+        name={name}
       />
     </label>
   )

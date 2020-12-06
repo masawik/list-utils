@@ -2,6 +2,10 @@ import React, {useEffect, useState} from 'react'
 import styles from './TwoLists.module.css'
 import {getAMinusB, getIntersections, getWithoutIntersections} from "../../utils/twoLists";
 import {listToString, stringToList} from "../../utils/list-string";
+import Textarea from "../inputs/Textarea";
+import Header from "../Header/Header";
+import Radio from "../inputs/Radio";
+const PAGE_TITLE = 'Манипуляции с двумя списками'
 
 export default function TwoLists() {
   const [mode, setMode] = useState('intersection')
@@ -11,8 +15,12 @@ export default function TwoLists() {
 
 
   useEffect(() => {
-    document.title = 'Манипуляции с двумя списками'
+    document.title = PAGE_TITLE
   }, [])
+
+  useEffect(() => {
+    console.log(mode)
+  }, [mode])
 
   function onSubmit(e) {
     e.preventDefault()
@@ -57,15 +65,13 @@ export default function TwoLists() {
   ]
   const $modeSelectors = modes.map((item, index) => {
     return (
-      <label key={'modeSelectors' + index}>
-        <input
-          type="radio"
-          name={item.mode}
-          checked={mode === item.mode}
-          onChange={modeHandler}
-        />
-        {item.label}
-      </label>
+      <Radio
+        key={item.mode}
+        label={item.label}
+        name={item.mode}
+        checked={mode === item.mode}
+        onChange={modeHandler}
+      />
     )
   })
   const inputLists = [
@@ -80,10 +86,11 @@ export default function TwoLists() {
   ]
   const $inputLists = inputLists.map((item, index) => {
     return (
-      <textarea
+      <Textarea
+        label={'список ' + (index + 1)}
         className={styles.inputList}
         required
-        key={'inputLists' + index}
+        key={item.name}
         name={item.name}
         value={listToString(item.state)}
         onChange={inputDataHandler}
@@ -91,30 +98,36 @@ export default function TwoLists() {
     )
   })
 
-  // инициализация стилей
-  let resultListStyles = [styles.resultList]
-  if (listC.length) resultListStyles.push(styles.resultList_visible)
-  resultListStyles = resultListStyles.join(' ')
   return (
-    <form
-      className={styles.container}
-      onSubmit={onSubmit}
-    >
-      <div className={styles.modeSelectors}>
-        {$modeSelectors}
-      </div>
-      <button>go</button>
+    <div className='container'>
+      <Header
+        title={PAGE_TITLE}
+      />
+      <form
+        className={styles.form}
+        onSubmit={onSubmit}
+      >
+        <div className={styles.inputListsBox}>
+          {$inputLists}
+        </div>
 
-      <div className={styles.inputListsBox}>
-        {$inputLists}
-
-        <textarea
-          className={resultListStyles}
+        <Textarea
+          label='результат'
+          className={styles.resultList}
           readOnly
           name='listС'
           value={listToString(listC)}
         />
-      </div>
-    </form>
+
+        <div className={styles.modeSelectors}>
+          {$modeSelectors}
+        </div>
+
+        <button
+          className={'button '  + styles.submitBtn}
+        >Выполнить
+        </button>
+      </form>
+    </div>
   )
 }

@@ -88,7 +88,7 @@ function Reformat() {
             required
           />
 
-          <button className={'button ' + styles.submit}>
+          <button className={'button ' + styles.submitBtn}>
             форматировать
           </button>
         </div>

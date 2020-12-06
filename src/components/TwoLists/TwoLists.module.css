@@ -1,44 +1,31 @@
 .form {
     display: flex;
     flex-direction: column;
-    width: 960px;
-    margin: 0 auto;
-    padding-top: 20px;
 }
 
 .inputListsBox {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-.inputList,
-.resultList {
-    resize: none;
+.inputList {
     width: 465px;
-    height: 400px;
+    height: 30vh;
 }
 
 .resultList {
-    height: 0;
+    height: 30vh;
     width: 960px;
-    overflow-y: hidden;
-    padding: 0;
-    border: none;
-    transition-property: height;
-    transition-duration: .3s;
-}
-
-.resultList_visible {
-    height: 400px;
-    overflow-y: auto;
-    border: 1px solid black;
-}
-
-.inputList:first-child {
-    margin-right: 18px;
 }
 
 .modeSelectors {
     display: flex;
     flex-direction: column;
+    margin: 20px 0;
+}
+
+.submitBtn {
+    width: 200px;
 }
