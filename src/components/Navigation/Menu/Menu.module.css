@@ -1,6 +1,6 @@
 .menu {
     background-color: var(--black);
-    height: 100vh;
+    height: 100%;
     width: 300px;
     padding: 50px 15px;
     position: fixed;
@@ -14,9 +14,21 @@
     transform: translateX(0);
 }
 
+@media (max-width: 550px) {
+    .menu {
+        width: 100%;
+        transform: translateX(-100%);
+        padding: 50px 60px;
+    }
+
+    .menu_opened {
+        transform: translateX(0);
+    }
+}
+
 .dimmer {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     position: fixed;
     background-color: var(--black);
     opacity: 50%;
@@ -25,10 +37,17 @@
 
 .link {
     color: var(--white);
+    text-align: center;
 }
 
 .link_current {
     color: var(--gray);
+}
+
+@media (max-width: 550px) {
+    .ul {
+        text-align: center;
+    }
 }
 
 .li {
@@ -60,4 +79,20 @@
 
 .li:hover:after {
     transform: scaleX(1);
+}
+
+.mobileHeaderMenu {
+    display: none;
+    height: 60px;
+    width: 100%;
+    background-color: var(--black);
+}
+@media (max-width: 550px) {
+    .mobileHeaderMenu {
+        display: block;
+    }
+
+    .burger {
+        display: none;
+    }
 }

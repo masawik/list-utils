@@ -5,6 +5,8 @@ import {listToString, stringToList} from "../../utils/list-string";
 import Textarea from "../inputs/Textarea";
 import Header from "../Header/Header";
 import Radio from "../inputs/Radio";
+import CopyBtn from "../CopyBtn/CopyBtn";
+
 const PAGE_TITLE = 'Манипуляции с двумя списками'
 
 export default function TwoLists() {
@@ -93,6 +95,7 @@ export default function TwoLists() {
       />
     )
   })
+  const $copyBtn = listC.length ? (<CopyBtn className={styles.copyBtn} payload={listC}/>) : null
 
   return (
     <div className='container'>
@@ -114,13 +117,14 @@ export default function TwoLists() {
           name='listС'
           value={listToString(listC)}
         />
+        {$copyBtn}
 
         <div className={styles.modeSelectors}>
           {$modeSelectors}
         </div>
 
         <button
-          className={'button '  + styles.submitBtn}
+          className={'button ' + styles.btn}
         >Выполнить
         </button>
       </form>

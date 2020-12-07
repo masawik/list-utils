@@ -7,17 +7,30 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .inputList {
-    width: 465px;
+    width: 49%;
     height: 30vh;
+}
+
+@media (max-width: 680px) {
+    .inputListsBox {
+        justify-content: start;
+    }
+
+    .inputList {
+        width: 100%;
+    }
+    .inputList:first-child {
+        margin-bottom: 10px;
+    }
 }
 
 .resultList {
     height: 30vh;
-    width: 960px;
+    width: 100%;
 }
 
 .modeSelectors {
@@ -26,6 +39,12 @@
     margin: 20px 0;
 }
 
-.submitBtn {
+.btn {
     width: 200px;
+}
+
+.copyBtn {
+    width: 200px;
+    margin-top: 3px;
+    margin-left: auto;
 }

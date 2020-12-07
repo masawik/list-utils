@@ -24,6 +24,19 @@
     transition-duration: .3s;
 }
 
+@media (max-width: 550px) {
+    .burger {
+        position: inherit;
+        padding: 20px;
+    }
+    .burger__line {
+        background-color: var(--white);
+    }
+    .burger_active {
+        transform: translateX(calc(100vw - 80px));
+    }
+}
+
 .burger__line:not(:last-child) {
     margin-bottom: 5px;
 }

@@ -2,3 +2,18 @@
     margin: 0 0 50px 10px;
     padding-top: 20px;
 }
+
+@media (max-width: 1120px) {
+    .header {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 550px) {
+    .header {
+        font-size: 18px;
+        margin: 0 0 20px 5px;
+        padding-top: 10px;
+
+    }
+}

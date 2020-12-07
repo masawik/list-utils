@@ -2,15 +2,15 @@ import React from 'react'
 import styles from './inputs.module.css'
 
 export default function Textarea({className, value, onChange, required, placeholder, label, readOnly, name}) {
-  let textareaClasses = styles.textarea
-  if (className) textareaClasses = textareaClasses + ' ' + className
+  let labelClasses = [styles.label]
+  if (className) labelClasses = labelClasses + ' ' + className
 
 
   return (
-    <label className={styles.label}>
+    <label className={labelClasses}>
       {label}
       <textarea
-        className={textareaClasses}
+        className={styles.textarea}
         value={value}
         onChange={onChange}
         required={required}

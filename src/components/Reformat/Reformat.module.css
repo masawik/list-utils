@@ -2,6 +2,12 @@
     display: flex;
 }
 
+@media (max-width: 680px) {
+    .form {
+        flex-direction: column;
+    }
+}
+
 .block {
     display: flex;
     flex-direction: column;
@@ -12,7 +18,7 @@
     margin-right: 30px;
 }
 
-.template {
+.templateInput {
     margin-bottom: 10px;
 }
 
@@ -20,7 +26,17 @@
     height: 60vh;
 }
 
-.submitBtn {
+@media (max-width: 680px) {
+    .textarea {
+        white-space: pre;
+        overflow-x: hidden;
+    }
+    .templateInput {
+        font-size: 14px;
+    }
+}
+
+.btn {
     margin-left: auto;
     margin-top: 10px;
     padding: 10px;

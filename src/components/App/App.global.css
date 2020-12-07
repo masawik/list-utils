@@ -4,6 +4,7 @@
     --black: #000000;
     --white: #fff;
     --gray: #ccc;
+    --green: #179400;
 }
 
 * {
@@ -43,7 +44,15 @@ body {
 
 .container {
     margin: 0 auto;
-    width: 960px;
+    max-width: 1120px;
+    padding: 0 80px 100px;
+}
+
+@media (max-width: 550px) {
+    .container {
+        margin: 0 auto;
+        padding: 0 15px 70px;
+    }
 }
 
 a {

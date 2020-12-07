@@ -6,6 +6,7 @@ import {listToString, stringToList} from "../../utils/list-string";
 import Textarea from "../inputs/Textarea";
 import InputText from "../inputs/InputText";
 import Header from "../Header/Header";
+import CopyBtn from "../CopyBtn/CopyBtn";
 const PAGE_TITLE = 'Форматирование строк'
 
 function Reformat() {
@@ -21,7 +22,7 @@ function Reformat() {
   const [inputTemplate, setInputTemplate] = useState(inputTemplateValue)
   const [outputTemplate, setOutputTemplate] = useState(outputTemplateValue)
   const [outputTemplateTouched, setOutputTemplateTouched] = useState(false)
-  const [outputData, setOutputData] = useState('')
+  const [outputData, setOutputData] = useState([])
 
   // синхронизация с лс при загрузке компонента
   useEffect(() => {
@@ -39,7 +40,7 @@ function Reformat() {
     e.preventDefault()
     const parsedStrings = reformat(inputTemplate, inputData)
     const result = stringInserter(outputTemplate, parsedStrings)
-    setOutputData(listToString(result))
+    setOutputData(result)
     lsWrite(LS_TEMPLATE_KEY, {input: inputTemplate, output: outputTemplate})
     lsWrite(LS_INPUT_DATA_KEY, inputData)
   }
@@ -60,6 +61,15 @@ function Reformat() {
     setInputTemplate(newValue)
   }
 
+  const $copyBtn = outputData.length
+    ? (
+      <CopyBtn
+        payload={outputData}
+        className={styles.btn}
+      />
+      )
+    : null
+
   return (
     <div className='container'>
       <Header
@@ -73,7 +83,7 @@ function Reformat() {
         <div className={styles.block}>
           <InputText
             label="маска входных данных"
-            className={styles.template}
+            className={styles.templateInput}
             type="text"
             value={inputTemplate}
             onChange={inputTemplateHandler}
@@ -88,7 +98,10 @@ function Reformat() {
             required
           />
 
-          <button className={'button ' + styles.submitBtn}>
+          <button
+            type='submit'
+            className={'button ' + styles.btn}
+          >
             форматировать
           </button>
         </div>
@@ -96,7 +109,7 @@ function Reformat() {
         <div className={styles.block}>
           <InputText
             label='маска выходных данных'
-            className={styles.template}
+            className={styles.templateInput}
             type="text"
             value={outputTemplate}
             onChange={e => {
@@ -111,8 +124,9 @@ function Reformat() {
             label='выходные данные'
             className={styles.textarea}
             readOnly
-            value={outputData}
+            value={listToString(outputData)}
           />
+          {$copyBtn}
         </div>
       </form>
     </div>

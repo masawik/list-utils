@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from 'react'
+import React, {useState, Fragment, useEffect} from 'react'
 import styles from './Menu.module.css'
 import Burger from "../Burger/Burger";
 import {Link, withRouter} from "react-router-dom";
@@ -6,6 +6,15 @@ import {Link, withRouter} from "react-router-dom";
 function Menu({location}) {
   // инициализация стейтов
   const [isOpen, setIsOpen] = useState(false)
+  // прокрутка вверх и скрытие скролла при открытии меню
+  useEffect(() => {
+    if (isOpen) {
+      window.scroll(0, 0)
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
 
   function toggleMenu() {
     setIsOpen(prevState => !prevState)
@@ -37,6 +46,7 @@ function Menu({location}) {
       >
         <Link
           className={styles.link}
+          onClick={toggleMenu}
           to={item.path}
         >{item.title}</Link>
       </li>
@@ -57,13 +67,21 @@ function Menu({location}) {
   return (
     <Fragment>
       <Burger
+        className={styles.burger}
         isOpen={isOpen}
         toggleMenu={toggleMenu}
       />
 
+      <div className={styles.mobileHeaderMenu}>
+        <Burger
+          isOpen={isOpen}
+          toggleMenu={toggleMenu}
+        />
+      </div>
+
       <div className={menuStyles}>
         <nav>
-          <ul>
+          <ul className={styles.ul}>
             {$routes}
           </ul>
         </nav>

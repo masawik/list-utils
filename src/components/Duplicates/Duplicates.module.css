@@ -8,7 +8,8 @@
 .textareaSpanBox {
     display: flex;
     flex-direction: column;
-    padding-bottom: 25px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
     width: 100%;
     position: relative;
 }
@@ -22,6 +23,9 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    color: #179400;
+    color: var(--green);
 }
 
+.copyBtn {
+    margin-left: 10px;
+}

@@ -1,6 +1,7 @@
 .label {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .textarea {
@@ -9,6 +10,7 @@
     margin-top: 5px;
     padding: 10px;
     font-size: 12px;
+    height: 100%;
 }
 
 .textarea::-webkit-scrollbar {

@@ -4,6 +4,7 @@ import {listToString, stringToList} from "../../utils/list-string";
 import {delDuplicates} from "../../utils/duplicates";
 import Textarea from "../inputs/Textarea";
 import Header from "../Header/Header";
+import CopyBtn from "../CopyBtn/CopyBtn";
 
 const PAGE_TITLE = 'Удаление дубликатов строк'
 
@@ -18,20 +19,19 @@ export default function Duplicates() {
 
   function onSubmit(e) {
     e.preventDefault()
-    const dataList = stringToList(inputData)
-    const result = delDuplicates(dataList)
-    const resultString = listToString(result.list)
+    const result = delDuplicates(inputData)
 
     setTouched(true)
     setDeleted(result.difference)
-    setInputData(resultString)
+    setInputData(result.list)
   }
 
   function inputDataHandler(e) {
-    setInputData(e.target.value)
+    setInputData(stringToList(e.target.value))
   }
 
   const $deletedStat = touched ? (<span className={styles.stat}>удалено дубликатов: {deleted}</span>) : null
+  const $copyBtn = touched ? (<CopyBtn className={styles.copyBtn} payload={inputData}/>) : null
 
   return (
     <div className='container'>
@@ -46,14 +46,17 @@ export default function Duplicates() {
           <Textarea
             label='список'
             className={styles.textarea}
-            value={inputData}
+            value={listToString(inputData)}
             onChange={inputDataHandler}
             required
           />
           {$deletedStat}
         </div>
 
-        <button className='button'>удалить дубликаты</button>
+        <div>
+          <button className='button'>удалить дубликаты</button>
+          {$copyBtn}
+        </div>
       </form>
     </div>
   )
