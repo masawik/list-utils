@@ -1,24 +1,16 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import styles from './TwoLists.module.css'
 import {getAMinusB, getIntersections, getWithoutIntersections} from "../../utils/twoLists";
 import {listToString, stringToList} from "../../utils/list-string";
 import Textarea from "../inputs/Textarea";
-import Header from "../Header/Header";
 import Radio from "../inputs/Radio";
 import CopyBtn from "../CopyBtn/CopyBtn";
-
-const PAGE_TITLE = 'Манипуляции с двумя списками'
 
 export default function TwoLists() {
   const [mode, setMode] = useState('intersection')
   const [listA, setListA] = useState([])
   const [listB, setListB] = useState([])
   const [listC, setListC] = useState([])
-
-
-  useEffect(() => {
-    document.title = PAGE_TITLE
-  }, [])
 
   function onSubmit(e) {
     e.preventDefault()
@@ -61,7 +53,7 @@ export default function TwoLists() {
     {label: 'Вычесть из первого списка второй', mode: 'aMinusB'},
     {label: 'Получить значения обоих списков без общих элементов', mode: 'withoutIntersections'},
   ]
-  const $modeSelectors = modes.map((item, index) => {
+  const $modeSelectors = modes.map((item) => {
     return (
       <Radio
         key={item.mode}
@@ -98,36 +90,31 @@ export default function TwoLists() {
   const $copyBtn = listC.length ? (<CopyBtn className={styles.copyBtn} payload={listC}/>) : null
 
   return (
-    <div className='container'>
-      <Header
-        title={PAGE_TITLE}
+    <form
+      className={styles.form}
+      onSubmit={onSubmit}
+    >
+      <div className={styles.inputListsBox}>
+        {$inputLists}
+      </div>
+
+      <Textarea
+        label='результат'
+        className={styles.resultList}
+        readOnly
+        name='listС'
+        value={listToString(listC)}
       />
-      <form
-        className={styles.form}
-        onSubmit={onSubmit}
-      >
-        <div className={styles.inputListsBox}>
-          {$inputLists}
-        </div>
+      {$copyBtn}
 
-        <Textarea
-          label='результат'
-          className={styles.resultList}
-          readOnly
-          name='listС'
-          value={listToString(listC)}
-        />
-        {$copyBtn}
+      <div className={styles.modeSelectors}>
+        {$modeSelectors}
+      </div>
 
-        <div className={styles.modeSelectors}>
-          {$modeSelectors}
-        </div>
-
-        <button
-          className={'button ' + styles.btn}
-        >Выполнить
-        </button>
-      </form>
-    </div>
+      <button
+        className={'button ' + styles.btn}
+      >Выполнить
+      </button>
+    </form>
   )
 }

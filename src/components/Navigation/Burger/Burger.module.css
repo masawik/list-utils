@@ -26,7 +26,7 @@
 
 @media (max-width: 550px) {
     .burger {
-        position: inherit;
+        position: static;
         padding: 20px;
     }
     .burger__line {

@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styles from './Burger.module.css'
+import {MenuStateContext} from "../MenuContext";
 
-export default function Burger({isOpen, toggleMenu, className}) {
+export default function Burger({className}) {
+  const {isOpen, toggleMenu} = useContext(MenuStateContext)
 
   const lineStyles = [styles.burger__line]
   const buttonStyles = [styles.burger]
@@ -13,7 +15,7 @@ export default function Burger({isOpen, toggleMenu, className}) {
 
   const lines = new Array(3)
     .fill('')
-    .map((_, index) => <span key={'line' + index} className={lineStyles.join(' ')}></span>)
+    .map((_, index) => <span key={'line' + index} className={lineStyles.join(' ')}> </span>)
 
   return (
     <button

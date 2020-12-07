@@ -1,21 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import styles from './Duplicates.module.css'
 import {listToString, stringToList} from "../../utils/list-string";
 import {delDuplicates} from "../../utils/duplicates";
 import Textarea from "../inputs/Textarea";
-import Header from "../Header/Header";
 import CopyBtn from "../CopyBtn/CopyBtn";
-
-const PAGE_TITLE = 'Удаление дубликатов строк'
 
 export default function Duplicates() {
   const [inputData, setInputData] = useState([])
   const [touched, setTouched] = useState(false)
   const [deleted, setDeleted] = useState(0)
-
-  useEffect(() => {
-    document.title = PAGE_TITLE
-  }, [])
 
   function onSubmit(e) {
     e.preventDefault()
@@ -34,30 +27,25 @@ export default function Duplicates() {
   const $copyBtn = touched ? (<CopyBtn className={styles.copyBtn} payload={inputData}/>) : null
 
   return (
-    <div className='container'>
-      <Header
-        title={PAGE_TITLE}
-      />
-      <form
-        className={styles.form}
-        onSubmit={onSubmit}
-      >
-        <div className={styles.textareaSpanBox}>
-          <Textarea
-            label='список'
-            className={styles.textarea}
-            value={listToString(inputData)}
-            onChange={inputDataHandler}
-            required
-          />
-          {$deletedStat}
-        </div>
+    <form
+      className={styles.form}
+      onSubmit={onSubmit}
+    >
+      <div className={styles.textareaSpanBox}>
+        <Textarea
+          label='список'
+          className={styles.textarea}
+          value={listToString(inputData)}
+          onChange={inputDataHandler}
+          required
+        />
+        {$deletedStat}
+      </div>
 
-        <div>
-          <button className='button'>удалить дубликаты</button>
-          {$copyBtn}
-        </div>
-      </form>
-    </div>
+      <div>
+        <button className='button'>удалить дубликаты</button>
+        {$copyBtn}
+      </div>
+    </form>
   )
 }

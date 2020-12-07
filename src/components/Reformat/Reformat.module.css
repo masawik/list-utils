@@ -34,6 +34,10 @@
     .templateInput {
         font-size: 14px;
     }
+
+    .block:first-child {
+        margin-bottom: 20px;
+    }
 }
 
 .btn {

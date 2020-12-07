@@ -1,57 +1,30 @@
-import React, {useState, Fragment, useEffect} from 'react'
+import React, {Fragment, useContext} from 'react'
 import styles from './Menu.module.css'
-import Burger from "../Burger/Burger";
-import {Link, withRouter} from "react-router-dom";
+import {Link, withRouter} from 'react-router-dom'
+import {MenuStateContext} from "../MenuContext";
 
 function Menu({location}) {
-  // инициализация стейтов
-  const [isOpen, setIsOpen] = useState(false)
-  // прокрутка вверх и скрытие скролла при открытии меню
-  useEffect(() => {
-    if (isOpen) {
-      window.scroll(0, 0)
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-  }, [isOpen])
+  const {isOpen, routes, toggleMenu} = useContext(MenuStateContext)
 
-  function toggleMenu() {
-    setIsOpen(prevState => !prevState)
-  }
-
-  // создание дом элементов
-  const routes = [
-    {
-      title: 'Форматирование строк',
-      path: '/reformat'
-    },
-    {
-      title: 'Удаление дубликатов строк',
-      path: '/duplicates'
-    },
-    {
-      title: 'Манипуляции с двумя списками',
-      path: '/twolists'
-    },
-  ]
-  const $routes = routes.map((item, index) => {
+  // создание элементов
+  const $routes = Object.keys(routes).map((item) => {
     let liClasses = [styles.li]
-    if (location.pathname === item.path) liClasses.push(styles.li_current)
+    if (location.pathname === item) liClasses.push(styles.li_current)
     liClasses = liClasses.join(' ')
     return (
       <li
         className={liClasses}
-        key={item.title}
+        key={routes[item]}
       >
         <Link
           className={styles.link}
           onClick={toggleMenu}
-          to={item.path}
-        >{item.title}</Link>
+          to={item}
+        >{routes[item]}</Link>
       </li>
     )
   })
+
   const $dimmer = isOpen
     ? (<div
       className={styles.dimmer}
@@ -66,19 +39,6 @@ function Menu({location}) {
 
   return (
     <Fragment>
-      <Burger
-        className={styles.burger}
-        isOpen={isOpen}
-        toggleMenu={toggleMenu}
-      />
-
-      <div className={styles.mobileHeaderMenu}>
-        <Burger
-          isOpen={isOpen}
-          toggleMenu={toggleMenu}
-        />
-      </div>
-
       <div className={menuStyles}>
         <nav>
           <ul className={styles.ul}>

@@ -10,9 +10,9 @@ export default function App() {
   return (
     <Layout>
       <Switch>
-        <Route path='/reformat' component={Reformat} />
-        <Route path='/duplicates' component={Duplicates} />
-        <Route path='/twolists' component={TwoLists} />
+        <Route path='/reformat' component={Reformat}/>
+        <Route path='/duplicates' component={Duplicates}/>
+        <Route path='/twolists' component={TwoLists}/>
         <Redirect from='/' to='/reformat'/>
       </Switch>
     </Layout>

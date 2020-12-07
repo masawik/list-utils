@@ -2,7 +2,7 @@
     background-color: var(--black);
     height: 100%;
     width: 300px;
-    padding: 50px 15px;
+    padding: 70px 15px;
     position: fixed;
     transition-property: transform;
     transition-duration: .3s;
@@ -18,7 +18,7 @@
     .menu {
         width: 100%;
         transform: translateX(-100%);
-        padding: 50px 60px;
+        padding: 70px 60px;
     }
 
     .menu_opened {
