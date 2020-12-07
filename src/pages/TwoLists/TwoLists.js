@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import styles from './TwoLists.module.css'
 import {getAMinusB, getIntersections, getWithoutIntersections} from "../../utils/twoLists";
 import {listToString, stringToList} from "../../utils/list-string";
-import Textarea from "../inputs/Textarea";
-import Radio from "../inputs/Radio";
-import CopyBtn from "../CopyBtn/CopyBtn";
+import Textarea from "../../components/inputs/Textarea";
+import Radio from "../../components/inputs/Radio";
+import CopyBtn from "../../components/CopyBtn/CopyBtn";
 
 export default function TwoLists() {
   const [mode, setMode] = useState('intersection')

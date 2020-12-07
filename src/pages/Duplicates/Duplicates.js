@@ -2,8 +2,8 @@ import React, {useState} from 'react'
 import styles from './Duplicates.module.css'
 import {listToString, stringToList} from "../../utils/list-string";
 import {delDuplicates} from "../../utils/duplicates";
-import Textarea from "../inputs/Textarea";
-import CopyBtn from "../CopyBtn/CopyBtn";
+import Textarea from "../../components/inputs/Textarea";
+import CopyBtn from "../../components/CopyBtn/CopyBtn";
 
 export default function Duplicates() {
   const [inputData, setInputData] = useState([])

@@ -1,30 +1,27 @@
 import React, {Fragment, useContext} from 'react'
 import styles from './Menu.module.css'
-import {Link, withRouter} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {MenuStateContext} from "../MenuContext";
 
-function Menu({location}) {
+function Menu() {
   const {isOpen, routes, toggleMenu} = useContext(MenuStateContext)
 
   // создание элементов
   const $routes = Object.keys(routes).map((item) => {
-    let liClasses = [styles.li]
-    if (location.pathname === item) liClasses.push(styles.li_current)
-    liClasses = liClasses.join(' ')
     return (
       <li
-        className={liClasses}
+        className={styles.li}
         key={routes[item]}
       >
-        <Link
+        <NavLink
           className={styles.link}
+          activeClassName={styles.link_current}
           onClick={toggleMenu}
           to={item}
-        >{routes[item]}</Link>
+        >{routes[item]}</NavLink>
       </li>
     )
   })
-
   const $dimmer = isOpen
     ? (<div
       className={styles.dimmer}
@@ -51,4 +48,4 @@ function Menu({location}) {
   )
 }
 
-export default withRouter(Menu)
+export default Menu

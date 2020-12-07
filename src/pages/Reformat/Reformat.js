@@ -3,9 +3,9 @@ import styles from './Reformat.module.css'
 import {stringInserter, reformat} from "../../utils/Reformat";
 import {lsRead, lsWrite} from "../../utils/localStorage";
 import {listToString, stringToList} from "../../utils/list-string";
-import Textarea from "../inputs/Textarea";
-import InputText from "../inputs/InputText";
-import CopyBtn from "../CopyBtn/CopyBtn";
+import Textarea from "../../components/inputs/Textarea";
+import InputText from "../../components/inputs/InputText";
+import CopyBtn from "../../components/CopyBtn/CopyBtn";
 
 function Reformat() {
   // константы
