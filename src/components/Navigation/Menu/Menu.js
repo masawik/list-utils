@@ -40,6 +40,13 @@ function Menu() {
         <nav>
           <ul className={styles.ul}>
             {$routes}
+            <li className={styles.li}>
+              <a
+                href="https://github.com/masawik/list-utils"
+                className={styles.link}
+                style={{color: 'green'}}
+              >GitHub</a>
+            </li>
           </ul>
         </nav>
       </div>
