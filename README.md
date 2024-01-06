@@ -1,4 +1,4 @@
-**[DEMO](https://list-utils.herokuapp.com/)**
+**[DEMO](https://masawik.github.io/list-utils)**
 
 Простое приложение с инструментами для редактирования текстовых списков.
 
